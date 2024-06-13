@@ -1,12 +1,21 @@
 import tkinter as tk
-from tkinter import filedialog
+import os
+from tkinter import filedialog, messagebox
 
 def on_button_click():
     directory = filedialog.askdirectory()
     if directory:
-        print(f"Selected directory: {directory}")
+        file_count = count_files_in_directory(directory)
+        messagebox.showinfo("File Count", f"There are {file_count} files in the selected directory.")
 
-
+def count_files_in_directory(directory):
+    try:
+        files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+        return len(files)
+    except Exception as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        return 0
+    
 # Setup the GUI
 root = tk.Tk()
 root.title("File Counter")
