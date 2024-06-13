@@ -22,7 +22,7 @@ root.title("File Counter")
 
 # Create a button
 button = tk.Button(root, text="Select Directory and Count Files", command=on_button_click)
-button.pack(pady=20, padx=20)
+button.pack(pady=20, padx=100)
 
 
 # Run the application
